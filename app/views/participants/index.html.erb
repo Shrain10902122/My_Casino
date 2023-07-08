@@ -1,0 +1,34 @@
+<div class="container records">
+  <h1 class="h2 mb-3">參賽動物</h1>
+  <span>* 期望獲利為: 如果下注的參賽動物獲勝，每下注 <strong>1000元</strong> 能得到的獎金</span>
+  <br>
+  <div class="table-responsive">
+    <table class="table">
+      <br>
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">名字</th>
+          <th scope="col">下注總額</th>
+          <th scope="col">期望獎金</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @participants.each do |participant| %>
+          <tr>
+            <td>No.<%= participant.id %></td>
+            <td><%= participant.name %></td>
+            <td><%= participant.sum_bets  %></td>
+            <td><%= participant.expected_profit(1000)  %></td>
+            <td>
+              <%= link_to "下注", new_bet_path(:participant_id => participant.id), class: "btn btn-primary  pull-right" %>
+            </td>
+            <td>
+              <%= link_to "詳細", participant_path(participant), class: "btn btn-success"%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
